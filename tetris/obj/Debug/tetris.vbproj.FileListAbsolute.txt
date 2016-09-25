@@ -1,1 +1,11 @@
 C:\Users\不死火鳳凰\Desktop\工作區\VS2015_Traditional\tetris\tetris\bin\Debug\tetris.exe.config
+C:\Users\不死火鳳凰\Desktop\工作區\VS2015_Traditional\tetris\tetris\bin\Debug\tetris.exe
+C:\Users\不死火鳳凰\Desktop\工作區\VS2015_Traditional\tetris\tetris\bin\Debug\tetris.pdb
+C:\Users\不死火鳳凰\Desktop\工作區\VS2015_Traditional\tetris\tetris\bin\Debug\tetris.xml
+C:\Users\不死火鳳凰\Desktop\工作區\VS2015_Traditional\tetris\tetris\obj\Debug\tetris.vbprojResolveAssemblyReference.cache
+C:\Users\不死火鳳凰\Desktop\工作區\VS2015_Traditional\tetris\tetris\obj\Debug\tetris.frmTet.resources
+C:\Users\不死火鳳凰\Desktop\工作區\VS2015_Traditional\tetris\tetris\obj\Debug\tetris.Resources.resources
+C:\Users\不死火鳳凰\Desktop\工作區\VS2015_Traditional\tetris\tetris\obj\Debug\tetris.vbproj.GenerateResource.Cache
+C:\Users\不死火鳳凰\Desktop\工作區\VS2015_Traditional\tetris\tetris\obj\Debug\tetris.exe
+C:\Users\不死火鳳凰\Desktop\工作區\VS2015_Traditional\tetris\tetris\obj\Debug\tetris.xml
+C:\Users\不死火鳳凰\Desktop\工作區\VS2015_Traditional\tetris\tetris\obj\Debug\tetris.pdb

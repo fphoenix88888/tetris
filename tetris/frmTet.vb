@@ -1,7 +1,9 @@
-﻿Imports tetris.clsTetDisplay
-Imports tetris.clsTetShapes
-Imports tetris.clsTetGrid
 Public Class frmTet
+#Region "Part 1 & 2"
+    Private grdGame As clsTetGrid 'Grid Instance
+    Private arrGridBrushes()() As SolidBrush 'Colours
+    Private arrColours() As SolidBrush 'Colours
+
     Private scrGame As clsTetDisplay 'Declare Physical Game Object
     Private scrSplash As clsTetDisplay 'Declare Object To Be Shown On Preview Block
     Private scrPreview As clsTetDisplay 'Declare "HTG" Display Object
@@ -22,6 +24,7 @@ Public Class frmTet
 
     Private blnDropped As Boolean = False 'Has There Been An Object Dropped?
     Private blnGameOver As Boolean 'Is The Game Over?
+#End Region
 
     Private shpShape As clsTetShapes 'Current Shape
     Private shpNextShape As clsTetShapes 'Next Shape
@@ -37,10 +40,108 @@ Public Class frmTet
     Private intNextShapeType As Integer 'Next Shape Type
     Private intShapeType As Integer 'Current Shape Type
 
-    ''' 
+#Region "Part 1 & 2"
+    ''' <summary>
+    ''' Displays The Letters HTG When Loaded
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub Splash()
+        Dim gStart As Graphics = scrSplash.GetGraphics() 'Enable Drawing
+        scrSplash.ClearScreen() 'Clear If There Was Something
+        'Create H Shape
+        gStart.FillRectangle(New SolidBrush(Color.Red), 25, 100, 5, 5)
+        gStart.DrawRectangle(New Pen(Color.White, 1), 25, 100, 5, 5)
+
+        gStart.FillRectangle(New SolidBrush(Color.Red), 25, 105, 5, 5)
+        gStart.DrawRectangle(New Pen(Color.White, 1), 25, 105, 5, 5)
+
+        gStart.FillRectangle(New SolidBrush(Color.Red), 25, 110, 5, 5)
+        gStart.DrawRectangle(New Pen(Color.White, 1), 25, 110, 5, 5)
+
+        gStart.FillRectangle(New SolidBrush(Color.Red), 25, 115, 5, 5)
+        gStart.DrawRectangle(New Pen(Color.White, 1), 25, 115, 5, 5)
+
+        gStart.FillRectangle(New SolidBrush(Color.Red), 25, 120, 5, 5)
+        gStart.DrawRectangle(New Pen(Color.White, 1), 25, 120, 5, 5)
+
+        gStart.FillRectangle(New SolidBrush(Color.Red), 30, 110, 5, 5)
+        gStart.DrawRectangle(New Pen(Color.White, 1), 30, 110, 5, 5)
+
+        gStart.FillRectangle(New SolidBrush(Color.Red), 35, 110, 5, 5)
+        gStart.DrawRectangle(New Pen(Color.White, 1), 35, 110, 5, 5)
+
+        gStart.FillRectangle(New SolidBrush(Color.Red), 40, 100, 5, 5)
+        gStart.DrawRectangle(New Pen(Color.White, 1), 40, 100, 5, 5)
+
+        gStart.FillRectangle(New SolidBrush(Color.Red), 40, 105, 5, 5)
+        gStart.DrawRectangle(New Pen(Color.White, 1), 40, 105, 5, 5)
+
+        gStart.FillRectangle(New SolidBrush(Color.Red), 40, 110, 5, 5)
+        gStart.DrawRectangle(New Pen(Color.White, 1), 40, 110, 5, 5)
+
+        gStart.FillRectangle(New SolidBrush(Color.Red), 40, 115, 5, 5)
+        gStart.DrawRectangle(New Pen(Color.White, 1), 40, 115, 5, 5)
+
+        gStart.FillRectangle(New SolidBrush(Color.Red), 40, 120, 5, 5)
+        gStart.DrawRectangle(New Pen(Color.White, 1), 40, 120, 5, 5)
+
+        'Create T Shape
+        gStart.FillRectangle(New SolidBrush(Color.Green), 55, 100, 5, 5)
+        gStart.DrawRectangle(New Pen(Color.White, 1), 55, 100, 5, 5)
+
+        gStart.FillRectangle(New SolidBrush(Color.Green), 60, 100, 5, 5)
+        gStart.DrawRectangle(New Pen(Color.White, 1), 60, 100, 5, 5)
+
+        gStart.FillRectangle(New SolidBrush(Color.Green), 65, 100, 5, 5)
+        gStart.DrawRectangle(New Pen(Color.White, 1), 65, 100, 5, 5)
+
+        gStart.FillRectangle(New SolidBrush(Color.Green), 60, 105, 5, 5)
+        gStart.DrawRectangle(New Pen(Color.White, 1), 60, 105, 5, 5)
+
+        gStart.FillRectangle(New SolidBrush(Color.Green), 60, 110, 5, 5)
+        gStart.DrawRectangle(New Pen(Color.White, 1), 60, 110, 5, 5)
+
+        gStart.FillRectangle(New SolidBrush(Color.Green), 60, 115, 5, 5)
+        gStart.DrawRectangle(New Pen(Color.White, 1), 60, 115, 5, 5)
+
+        gStart.FillRectangle(New SolidBrush(Color.Green), 60, 120, 5, 5)
+        gStart.DrawRectangle(New Pen(Color.White, 1), 60, 120, 5, 5)
+
+        'Create G Shape
+        gStart.FillRectangle(New SolidBrush(Color.Blue), 85, 100, 5, 5)
+        gStart.DrawRectangle(New Pen(Color.White, 1), 85, 100, 5, 5)
+
+        gStart.FillRectangle(New SolidBrush(Color.Blue), 90, 100, 5, 5)
+        gStart.DrawRectangle(New Pen(Color.White, 1), 90, 100, 5, 5)
+
+        gStart.FillRectangle(New SolidBrush(Color.Blue), 80, 105, 5, 5)
+        gStart.DrawRectangle(New Pen(Color.White, 1), 80, 105, 5, 5)
+
+        gStart.FillRectangle(New SolidBrush(Color.Blue), 80, 110, 5, 5)
+        gStart.DrawRectangle(New Pen(Color.White, 1), 80, 110, 5, 5)
+
+        gStart.FillRectangle(New SolidBrush(Color.Blue), 80, 115, 5, 5)
+        gStart.DrawRectangle(New Pen(Color.White, 1), 80, 115, 5, 5)
+
+        gStart.FillRectangle(New SolidBrush(Color.Blue), 85, 120, 5, 5)
+        gStart.DrawRectangle(New Pen(Color.White, 1), 85, 120, 5, 5)
+
+        gStart.FillRectangle(New SolidBrush(Color.Blue), 90, 120, 5, 5)
+        gStart.DrawRectangle(New Pen(Color.White, 1), 90, 120, 5, 5)
+
+        gStart.FillRectangle(New SolidBrush(Color.Blue), 95, 115, 5, 5)
+        gStart.DrawRectangle(New Pen(Color.White, 1), 95, 115, 5, 5)
+
+        gStart.FillRectangle(New SolidBrush(Color.Blue), 100, 115, 5, 5)
+        gStart.DrawRectangle(New Pen(Color.White, 1), 100, 115, 5, 5)
+
+        scrSplash.BufferImage()
+    End Sub
+
+    ''' <summary>
     ''' Set Up Of Game And Default Values
-    ''' 
-    ''' 
+    ''' </summary>
+    ''' <remarks></remarks>
     Private Sub SetUp()
 
         intGameSpeed = 100 'Game Speed = 100 Milliseconds
@@ -78,6 +179,13 @@ Public Class frmTet
         grdGame = New clsTetGrid(intNoOfRows, intNoOfCols) 'Create Grid
     End Sub
 
+#End Region
+
+    ''' <summary>
+    ''' Controls Flow Of Game
+    ''' Called From Timer
+    ''' </summary>
+    ''' <remarks></remarks>
     Private Sub MainGame()
 
         Dim g As Graphics = scrGame.GetGraphics() 'Allow Drawing
@@ -119,6 +227,39 @@ Public Class frmTet
 
     End Sub
 
+    ''' <summary>
+    ''' Draw Next Shape In Preview
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub NextShape()
+
+        Dim g As Graphics = scrPreview.GetGraphics() 'Allow Drawing In Preview
+
+        Dim rctNextShape() As Rectangle 'Set Up Next Shape
+
+        rctNextShape = shpNextShape.GetShape() 'Get Next Shape
+
+        arrColours = grdGame.GetColours() 'Get Next Shape Colours
+
+        scrPreview.ClearScreen() ' Clear Screen
+
+        Dim j As Integer
+
+        For j = 0 To 3 'Draw Shape
+            g.FillRectangle(arrColours((intNextShapeType - 1)), rctNextShape(j))
+            g.DrawRectangle(New Pen(Color.White, 1), rctNextShape(j))
+        Next j
+
+        scrPreview.BufferImage()
+
+    End Sub
+
+    ''' <summary>
+    ''' Get Next Shape Type
+    ''' Between The & Available Shapes
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Private Function GetShapeType() As Integer
         Dim intShapeType As Integer 'Shape Type
 
@@ -130,6 +271,10 @@ Public Class frmTet
 
     End Function
 
+    ''' <summary>
+    ''' Draws GAME OVER
+    ''' </summary>
+    ''' <remarks></remarks>
     Private Sub GameOver()
 
         Dim gOver As Graphics = scrSplash.GetGraphics() 'Make Use Of Splash Graphic Area
@@ -142,6 +287,11 @@ Public Class frmTet
         scrSplash.BufferImage()
     End Sub
 
+    ''' <summary>
+    ''' Updates Score
+    ''' </summary>
+    ''' <param name="intRowNum"></param>
+    ''' <remarks></remarks>
     Private Sub UpdateScore(ByVal intRowNum As Integer)
         intLevelRows += 1 'Increment Level Rows
         intTotalRows += 1 'Increment Total Rows
@@ -162,6 +312,10 @@ Public Class frmTet
 
     End Sub
 
+    ''' <summary>
+    ''' Update Level
+    ''' </summary>
+    ''' <remarks></remarks>
     Private Sub UpdateLevel()
         intLevel += 1 'Increment Level
 
@@ -173,6 +327,13 @@ Public Class frmTet
 
     End Sub
 
+
+    ''' <summary>
+    ''' Controls Key Presses
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
     Private Sub frmTet_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles MyBase.KeyDown
 
         Dim strKeyPress As String = Nothing
@@ -254,6 +415,12 @@ Public Class frmTet
         End If
     End Sub
 
+    ''' <summary>
+    ''' Controls Flow Of Game
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
     Private Sub tmrTet_Tick(ByVal sender As Object, ByVal e As System.EventArgs) Handles tmrTet.Tick
 
         If shpShape.blnMoving Then 'IF Shape Is Still Moving, Move Down
@@ -289,7 +456,7 @@ Public Class frmTet
                 Next i
 
                 'Sort Array Of Y Coordinates So That We Can Go From Small To Large
-                'Ensures That We Drop Rows Sequentially
+                'Enures That We Drop Rows Sequentially
                 Array.Sort(intYCoordinates)
 
                 For i = 0 To 3
@@ -347,6 +514,12 @@ Public Class frmTet
             End If
         End If
     End Sub
+
+#Region "Part 1 & 2"
+    Private Sub frmTet_Paint(ByVal sender As Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles MyBase.Paint
+        Splash()
+    End Sub
+#End Region
 
 
 End Class

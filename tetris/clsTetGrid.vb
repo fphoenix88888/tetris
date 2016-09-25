@@ -1,4 +1,7 @@
-﻿Public Class clsTetGrid
+'Creates The Blocks ( Grid ) To Put All Shapes On
+Public Class clsTetGrid
+
+#Region "Part 1 & 2"
     Private arrGrids As Rectangle()() 'Each Block
 
     Private arrGridBrushes As SolidBrush()() 'Each Shape's grid
@@ -35,6 +38,7 @@
         arrColours(5) = New SolidBrush(Color.Orange)
         arrColours(6) = New SolidBrush(Color.Purple)
 
+
     End Sub
 
     ''' <summary>
@@ -60,19 +64,22 @@
     End Function
 
     ''' <summary>
-    ''' Determine If block Is Unoccupied
+    ''' Determine If Next Row Is Unoccupied
     ''' </summary>
     ''' <param name="intRowNo">Specify Row</param>
     ''' <param name="intColNo">Specify Column</param>
     ''' <returns></returns>
     ''' <remarks></remarks>
     Public Function IsLocEmpty(ByVal intRowNo As Integer, ByVal intColNo As Integer) As Boolean
-
-        If arrGrids(intRowNo)(intColNo).IsEmpty Then
-            Return True 'If Location is Empty
-        Else
-            Return False 'If Not
-        End If
+        'CHANGE HERE IN PART 3 - TRY BLOCKS
+        Try
+            If arrGrids(intRowNo)(intColNo).IsEmpty Then
+                Return True 'If Location is Empty
+            Else
+                Return False 'If Not
+            End If
+        Catch ex As Exception
+        End Try
 
     End Function
 
@@ -87,29 +94,6 @@
 
     End Sub
 
-    ''' <summary>
-    ''' When The Shape Moves Down, Row By Row
-    ''' </summary>
-    ''' <param name="intRowNo">Specify Row</param>
-    ''' <param name="intColNo">Specify Column</param>
-    ''' <remarks></remarks>
-    Public Sub DropDown(ByVal intRowNo As Integer, ByVal intColNo As Integer)
-
-        If Not IsLocEmpty(intRowNo - 1, intColNo) Then 'Check If Next Row Is Empty
-
-            'Set Current Location Equal To The Same Location Horizontally, But
-            'Next Row ( Vertically )
-            'Size Is 10
-            arrGrids(intRowNo)(intColNo) = New Rectangle(arrGrids((intRowNo - 1))(intColNo).X, arrGrids((intRowNo - 1))(intColNo).Y + 10, 10, 10)
-
-            'Make Sure Gridlines Move Too
-            arrGridBrushes(intRowNo)(intColNo) = arrGridBrushes((intRowNo - 1))(intColNo)
-
-        Else 'Next Row Is Not Empty
-            arrGrids(intRowNo)(intColNo) = arrGrids((intRowNo - 1))(intColNo)
-        End If
-
-    End Sub
 
     ''' <summary>
     ''' Make Sure Gridlines And Colours Follow Shapes
@@ -126,6 +110,7 @@
         SetColourLoc(intRowNo, intColNo, intShapeType) 'Move Colour To Specified Cell
 
     End Sub
+
     ''' <summary>
     ''' Move Colour To Associated Row & Col
     ''' </summary>
@@ -134,7 +119,37 @@
     ''' <param name="intShapeType">Shape Index</param>
     ''' <remarks></remarks>
     Public Sub SetColourLoc(ByVal intRowNo As Integer, ByVal intColNo As Integer, ByVal intShapeType As Integer)
+
         'Set Colour Index To Grid Index
         arrGridBrushes(intRowNo)(intColNo) = arrColours((intShapeType - 1))
+
+    End Sub
+#End Region
+
+    ''' <summary>
+    ''' When The Shape Moves Down, Row By Row
+    ''' </summary>
+    ''' <param name="intRowNo">Specify Row</param>
+    ''' <param name="intColNo">Specify Column</param>
+    ''' <remarks></remarks>
+    Public Sub DropDown(ByVal intRowNo As Integer, ByVal intColNo As Integer)
+
+        'CHANGED HERE IN PART 3 - ADDED OR NOT INTROWNO <= 0
+        If Not IsLocEmpty(intRowNo - 1, intColNo) Or Not intRowNo <= 0 Then 'Check If Next Row Is Empty
+
+            'Set Current Location Equal To The Same Location Horizontally, But
+            'Next Row ( Vertically )
+            'Size Is 10
+            arrGrids(intRowNo)(intColNo) = New Rectangle(arrGrids((intRowNo - 1))(intColNo).X, arrGrids((intRowNo - 1))(intColNo).Y + 10, 10, 10)
+
+            'Make Sure Gridlines Move Too
+            arrGridBrushes(intRowNo)(intColNo) = arrGridBrushes((intRowNo - 1))(intColNo)
+
+        Else 'Next Row Is Not Empty
+            arrGrids(intRowNo)(intColNo) = arrGrids((intRowNo - 1))(intColNo)
+        End If
+
     End Sub
 End Class
+
+

@@ -1,5 +1,6 @@
-﻿Imports tetris.clsTetDisplay
+'Creates Shapes, Adds Movements etc.
 Public Class clsTetShapes
+
     Public rctShape() As Rectangle 'Shape
 
     Public blnMoving As Boolean 'Is The Shape Moving
@@ -14,6 +15,14 @@ Public Class clsTetShapes
     Private intPanelWidth As Integer 'Panel Width
     Private intPanelHeight As Integer 'Panel height
 
+    ''' <summary>
+    ''' Initialises Shape(s)
+    ''' </summary>
+    ''' <param name="intShapeType">Current Shape</param>
+    ''' <param name="intScreenW">Screen Width</param>
+    ''' <param name="intScreenH">Screen Height</param>
+    ''' <param name="blnNextShape">Image In The Next Shape Window</param>
+    ''' <remarks></remarks>
     Public Sub New(ByVal intShapeType As Integer, ByVal intScreenW As Integer, ByVal intScreenH As Integer, ByVal blnNextShape As Boolean)
 
         intStartX = CInt((intScreenW - 1) / 2) 'Start In Center Of X Axis
@@ -29,6 +38,11 @@ Public Class clsTetShapes
 
     End Sub
 
+    ''' <summary>
+    ''' Create The 4 Blocks Of Shape
+    ''' </summary>
+    ''' <param name="intShapeType">Which Shape Are We Busy With</param>
+    ''' <remarks></remarks>
     Private Sub Build(ByVal intShapeType As Integer)
 
         rctShape = New Rectangle(4) {} 'Each Block Of Shape
@@ -41,6 +55,13 @@ Public Class clsTetShapes
 
     End Sub
 
+    ''' <summary>
+    ''' Moves Current Shape Downwards
+    ''' </summary>
+    ''' <param name="intMovePixels"></param>
+    ''' <param name="rctGameGrid"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Public Function MoveDown(ByVal intMovePixels As Integer, ByVal rctGameGrid()() As Rectangle) As Rectangle()
         Dim blnMovable As Boolean = True 'Is The Shape Movable?
 
@@ -83,6 +104,13 @@ Public Class clsTetShapes
         Return rctShape
     End Function
 
+    ''' <summary>
+    ''' Move Shape Left
+    ''' </summary>
+    ''' <param name="intMovePixels"></param>
+    ''' <param name="rctGameGrid"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Public Function MoveLeft(ByVal intMovePixels As Integer, ByVal rctGameGrid()() As Rectangle) As Rectangle()
         Dim blnMovable As Boolean = True
         Dim intYPos(4) As Integer
@@ -131,6 +159,13 @@ Public Class clsTetShapes
         Return rctShape
     End Function
 
+    ''' <summary>
+    ''' Move Shape Right
+    ''' </summary>
+    ''' <param name="intMovePixels"></param>
+    ''' <param name="rctGameGrid"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Public Function MoveRight(ByVal intMovePixels As Integer, ByVal rctGameGrid()() As Rectangle) As Rectangle()
         Dim blnMovable As Boolean = True
 
@@ -186,6 +221,13 @@ Public Class clsTetShapes
 
     End Function
 
+    ''' <summary>
+    ''' Flip Shape
+    ''' </summary>
+    ''' <param name="strDirection"></param>
+    ''' <param name="rctGameGrid"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Public Function Flip(ByVal strDirection As String, ByVal rctGameGrid()() As Rectangle) As Rectangle()
 
         Dim blnMovable As Boolean = True
@@ -262,6 +304,10 @@ Public Class clsTetShapes
 
     End Function
 
+    ''' <summary>
+    ''' Set Shape Start Positions
+    ''' </summary>
+    ''' <remarks></remarks>
     Private Sub ShapeStart()
 
         If Not blnIsNextShape Then 'If Shape Shown In Main Game Window
@@ -422,10 +468,20 @@ Public Class clsTetShapes
         End If
     End Sub
 
+    ''' <summary>
+    ''' Get next Shape
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Public Function GetShape() As Rectangle()
         Return rctShape ' Return Next Shape
     End Function
 
+    ''' <summary>
+    ''' Set Each variation Of Each Shape's Positions
+    ''' Controlled By A And K Keys
+    ''' </summary>
+    ''' <remarks></remarks>
     Private Sub SetShapePos()
         Select Case intCurrShape
             Case 1 'T

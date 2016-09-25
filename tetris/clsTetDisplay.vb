@@ -1,4 +1,7 @@
-﻿Public Class clsTetDisplay
+#Region "1 & 2"
+'Displays All Shapes Inside Panels Where Necessary
+Public Class clsTetDisplay
+
     Protected g As Graphics = Nothing 'Graphics Object To Draw With
     Protected InMemoryGraphics As Graphics = Nothing 'Temporary Graphics PlaceHolder
 
@@ -9,12 +12,12 @@
     Public ScreenWidth As Integer = 0 'Width Of Panel
     Public ScreenHeight As Integer = 0 'Height Of Panel
 
-    ''' 
+    ''' <summary>
     ''' Initializes New Display Graphic
-    ''' 
-    ''' Panel To Use
-    ''' Rectangle to Use
-    ''' 
+    ''' </summary>
+    ''' <param name="p">Panel To Use</param>
+    ''' <param name="r">Rectangle to Use</param>
+    ''' <remarks></remarks>
     Public Sub New(ByVal p As Panel, ByVal r As Rectangle)
 
         g = p.CreateGraphics() 'Start Drawing
@@ -30,22 +33,22 @@
 
     End Sub
 
-    ''' 
+    ''' <summary>
     ''' Returns Temp Image
-    ''' 
-    ''' 
-    ''' 
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Public Function GetGraphics() As Graphics
 
         Return InMemoryGraphics 'Get In Memory Graphic
 
     End Function
 
-    ''' 
+    ''' <summary>
     ''' Determine Existance Of In Memory Graphic
-    ''' 
-    ''' 
-    ''' 
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Public Function ValidGraphic() As Boolean
 
         If Not (g Is Nothing) And Not (InMemoryGraphics Is Nothing) Then
@@ -56,10 +59,10 @@
 
     End Function
 
-    ''' 
+    ''' <summary>
     ''' Erase Game Screen
-    ''' 
-    ''' 
+    ''' </summary>
+    ''' <remarks></remarks>
     Public Sub ClearScreen()
 
         'If No Valid Graphic, Do Nothing
@@ -75,13 +78,16 @@
 
     End Sub
 
-    ''' 
+    ''' <summary>
     '''Ensures Smooth Animation, As Image Is Already Buffered 
-    ''' 
-    ''' 
+    ''' </summary>
+    ''' <remarks></remarks>
     Public Sub BufferImage()
 
         g.DrawImage(InMemoryImage, ScreenX, ScreenY)
 
     End Sub
+
 End Class
+
+#End Region

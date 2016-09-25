@@ -1,0 +1,248 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+tetris
+</name>
+</assembly>
+<members>
+<member name="T:tetris.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:tetris.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:tetris.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="M:tetris.clsTetDisplay.#ctor(System.Windows.Forms.Panel,System.Drawing.Rectangle)">
+ <summary>
+ Initializes New Display Graphic
+ </summary>
+ <param name="p">Panel To Use</param>
+ <param name="r">Rectangle to Use</param>
+ <remarks></remarks>
+</member>
+<member name="M:tetris.clsTetDisplay.GetGraphics">
+ <summary>
+ Returns Temp Image
+ </summary>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:tetris.clsTetDisplay.ValidGraphic">
+ <summary>
+ Determine Existance Of In Memory Graphic
+ </summary>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:tetris.clsTetDisplay.ClearScreen">
+ <summary>
+ Erase Game Screen
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:tetris.clsTetDisplay.BufferImage">
+ <summary>
+Ensures Smooth Animation, As Image Is Already Buffered 
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:tetris.clsTetGrid.#ctor(System.Int32,System.Int32)">
+ <summary>
+ Initialises The Grid
+ </summary>
+ <param name="intGridRows">Each Row</param>
+ <param name="intGridCols">Each Column</param>
+ <remarks></remarks>
+</member>
+<member name="M:tetris.clsTetGrid.GetGrid">
+ <summary>
+ Get Whole Grid Object Array
+ </summary>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:tetris.clsTetGrid.GetColours">
+ <summary>
+ Get All Colours Associated With Grid Object Array
+ </summary>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:tetris.clsTetGrid.IsLocEmpty(System.Int32,System.Int32)">
+ <summary>
+ Determine If Next Row Is Unoccupied
+ </summary>
+ <param name="intRowNo">Specify Row</param>
+ <param name="intColNo">Specify Column</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:tetris.clsTetGrid.FirstRow">
+ <summary>
+ Get The Top Row Of The Main Game Panel Grid
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:tetris.clsTetGrid.SetLoc(System.Int32,System.Int32,System.Drawing.Rectangle,System.Int32)">
+ <summary>
+ Make Sure Gridlines And Colours Follow Shapes
+ </summary>
+ <param name="intRowNo">Current Row</param>
+ <param name="intColNo">Current Column</param>
+ <param name="rctCell">Intersection Of Current Row And Current Column</param>
+ <param name="intShapeType">Shape Index</param>
+ <remarks></remarks>
+</member>
+<member name="M:tetris.clsTetGrid.DropDown(System.Int32,System.Int32)">
+ <summary>
+ When The Shape Moves Down, Row By Row
+ </summary>
+ <param name="intRowNo">Specify Row</param>
+ <param name="intColNo">Specify Column</param>
+ <remarks></remarks>
+</member>
+<member name="M:tetris.clsTetShapes.#ctor(System.Int32,System.Int32,System.Int32,System.Boolean)">
+ <summary>
+ Initialises Shape(s)
+ </summary>
+ <param name="intShapeType">Current Shape</param>
+ <param name="intScreenW">Screen Width</param>
+ <param name="intScreenH">Screen Height</param>
+ <param name="blnNextShape">Image In The Next Shape Window</param>
+ <remarks></remarks>
+</member>
+<member name="M:tetris.clsTetShapes.Build(System.Int32)">
+ <summary>
+ Create The 4 Blocks Of Shape
+ </summary>
+ <param name="intShapeType">Which Shape Are We Busy With</param>
+ <remarks></remarks>
+</member>
+<member name="M:tetris.clsTetShapes.MoveDown(System.Int32,System.Drawing.Rectangle[][])">
+ <summary>
+ Moves Current Shape Downwards
+ </summary>
+ <param name="intMovePixels"></param>
+ <param name="rctGameGrid"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:tetris.clsTetShapes.MoveLeft(System.Int32,System.Drawing.Rectangle[][])">
+ <summary>
+ Move Shape Left
+ </summary>
+ <param name="intMovePixels"></param>
+ <param name="rctGameGrid"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:tetris.clsTetShapes.MoveRight(System.Int32,System.Drawing.Rectangle[][])">
+ <summary>
+ Move Shape Right
+ </summary>
+ <param name="intMovePixels"></param>
+ <param name="rctGameGrid"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:tetris.clsTetShapes.Flip(System.String,System.Drawing.Rectangle[][])">
+ <summary>
+ Flip Shape
+ </summary>
+ <param name="strDirection"></param>
+ <param name="rctGameGrid"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:tetris.clsTetShapes.ShapeStart">
+ <summary>
+ Set Shape Start Positions
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:tetris.clsTetShapes.GetShape">
+ <summary>
+ Get next Shape
+ </summary>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:tetris.clsTetShapes.SetShapePos">
+ <summary>
+ Set Each variation Of Each Shape's Positions
+ Controlled By A And K Keys
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:tetris.frmTet.Splash">
+ <summary>
+ Displays The Letters HTG When Loaded
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:tetris.frmTet.SetUp">
+ <summary>
+ Set Up Of Game And Default Values
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:tetris.frmTet.MainGame">
+ <summary>
+ Controls Flow Of Game
+ Called From Timer
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:tetris.frmTet.NextShape">
+ <summary>
+ Draw Next Shape In Preview
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:tetris.frmTet.GameOver">
+ <summary>
+ Draws GAME OVER
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:tetris.frmTet.UpdateScore(System.Int32)">
+ <summary>
+ Updates Score
+ </summary>
+ <param name="intRowNum"></param>
+ <remarks></remarks>
+</member>
+<member name="M:tetris.frmTet.UpdateLevel">
+ <summary>
+ Update Level
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:tetris.frmTet.frmTet_KeyDown(System.Object,System.Windows.Forms.KeyEventArgs)">
+ <summary>
+ Controls Key Presses
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+ <remarks></remarks>
+</member>
+<member name="M:tetris.frmTet.tmrTet_Tick(System.Object,System.EventArgs)">
+ <summary>
+ Controls Flow Of Game
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+ <remarks></remarks>
+</member>
+</members>
+</doc>
